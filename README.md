@@ -118,3 +118,5 @@ The current embedding dimension is fixed at 1024. Do not mix test-generated and 
 This M1 build assumes one local backend process, has no authentication or multi-user authorization, and is not ready for public hosting.
 Citation verification proves quoted text exists in retrieved sources; it cannot mathematically prove answer semantics or eliminate hallucinations.
 Real-model acceptance, durable asynchronous ingestion, broader failure/restart testing and user-facing UI remain separately tracked work.
+
+旧控制台无法粘贴时，可在项目目录运行 `.\scripts\Set-ModelKey.ps1 -Window`，在本机遮挡窗口中点击粘贴和保存。窗口不预填现有密钥，保存成功仅代表配置写入；仍需真实模型验证。

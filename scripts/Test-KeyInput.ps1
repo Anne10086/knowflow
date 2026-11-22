@@ -27,7 +27,7 @@ foreach($case in $cases) {
         if(!$failure -or !$failure.Contains($case.Error)){throw ('Unexpected failure type: '+$case.Name)}
         if([IO.File]::ReadAllText($envPath) -ne $seed){throw ('Rejected input modified file: '+$case.Name)}
     } else {
-        if($failure){throw ('Valid synthetic input rejected: '+$case.Name)}
+        if($failure){throw ('Valid synthetic input rejected: '+$case.Name+'; '+$failure)}
         $saved=@([IO.File]::ReadAllLines($envPath)|Where-Object {$_ -match '^DASHSCOPE_API_KEY='})
         if($saved.Count -ne 1 -or $saved[0] -ne ('DASHSCOPE_API_KEY='+$case.Expected)){throw ('Saved value mismatch: '+$case.Name)}
         if(!([IO.File]::ReadAllText($envPath)).Contains('POSTGRES_PASSWORD=test-placeholder-only')){throw 'Unrelated setting changed'}
