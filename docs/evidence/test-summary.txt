@@ -7,3 +7,6 @@ RealRestartPersistenceIT: separate seed and verify Maven/JVM runs, 1 passed in e
 PowerShell 5.1 input-script tests: 9 passed separately.
 Real HTTP standalone-jar smoke test: upload READY, BW-4827 plus source, unknown budget refusal, delete then refusal.
 See m1-verify-output.txt and real-restart-output.txt for exact command outputs; per-class reports may come from their separately identified runs.
+
+M1 closeout regression: 43 passed, 0 failures/errors, 2 dedicated restart tests skipped. Includes NoKeyDeletionIT (1) and NoModelHttpIT (6).
+Closeout before fix: 2 executed/2 failed; focused post-fix: 2 passed; see closeout-before.txt, closeout-fixed.txt and closeout-full.txt.

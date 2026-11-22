@@ -20,6 +20,10 @@ public class ApiErrors {
     ResponseEntity<ErrorBody> invalid(Exception ex, HttpServletRequest request) { return ResponseEntity.badRequest().body(new ErrorBody("INVALID_INPUT", "请求格式或字段不合法", RequestIds.get(request))); }
     @ExceptionHandler(MaxUploadSizeExceededException.class)
     ResponseEntity<ErrorBody> tooLarge(HttpServletRequest request) { return ResponseEntity.status(413).body(new ErrorBody("FILE_TOO_LARGE", "TXT 文件不能超过 2 MiB", RequestIds.get(request))); }
+    @ExceptionHandler(org.springframework.web.HttpMediaTypeNotSupportedException.class)
+    ResponseEntity<ErrorBody> unsupportedMediaType(HttpServletRequest request) {
+        return ResponseEntity.status(415).body(new ErrorBody("UNSUPPORTED_MEDIA_TYPE", "请求 Content-Type 不受支持；问答使用 application/json，文件上传使用 multipart/form-data", RequestIds.get(request)));
+    }
     @ExceptionHandler(Exception.class)
     ResponseEntity<ErrorBody> unexpected(Exception ex, HttpServletRequest request) {
         // Provider exception bodies can contain credentials or source text: do not log their messages.

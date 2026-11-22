@@ -19,11 +19,13 @@ public class MilvusIndex implements VectorIndex {
     private final double minimumScore;
     private final KnowledgeStore store;
     private final String apiKey;
+    private final MilvusVectorDeletion deletion;
     public MilvusIndex(ObjectProvider<MilvusVectorStore> provider,
             @Value("${knowflow.retrieval.top-k}") int topK, @Value("${knowflow.retrieval.minimum-score}") double minimumScore,
-            KnowledgeStore store, @Value("${knowflow.ai.api-key}") String apiKey) {
+            KnowledgeStore store, @Value("${knowflow.ai.api-key}") String apiKey, MilvusVectorDeletion deletion) {
         this.provider = provider; this.topK = topK; this.minimumScore = minimumScore;
         this.store = store; this.apiKey = apiKey;
+        this.deletion = deletion;
     }
     @Override public void requireConfigured() {
         if (apiKey.isBlank()) throw ApiException.unavailable("MODEL_NOT_CONFIGURED", "未配置 DASHSCOPE_API_KEY，请在本机设置密钥后重启后端");
@@ -41,7 +43,7 @@ public class MilvusIndex implements VectorIndex {
         }
     }
     public void delete(List<UUID> ids) {
-        if (!ids.isEmpty()) provider.getObject().delete(ids.stream().map(UUID::toString).toList());
+        deletion.delete(ids);
     }
     public List<Hit> search(UUID kb, String question) {
         requireConfigured();

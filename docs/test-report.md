@@ -1,12 +1,12 @@
 # KnowFlow M1 实测报告
 
-日期：2026-11-22（Asia/Shanghai）。**M1 核心链路实测通过，提交人工验收；尚未开发 M2。**
+日期：2026-11-22（Asia/Shanghai）。**M1 已获独立源码静态复核与既有证据复核通过；本次完成收尾，M2 继续冻结。**
 本机密钥已由用户通过遮挡输入窗口保存。百炼实际向量化返回 HTTP 200、1024 维。
 实际运行模型：**qwen-plus 回答 + text-embedding-v3 向量化**。没有切换或调用 DeepSeek。
 
 ## 实际结果与证据
 
-完整 Maven 回归：**41 项通过，0 失败、0 错误，1 项专门重启测试跳过**。
+原验收版本 `11a63c8` 的完整 Maven 回归：**41 项通过，0 失败、0 错误，1 项专门重启测试跳过**。
 此后新增真实模型重启用例，并用专门脚本执行 seed 和 verify 两轮，各 1 项通过。
 另有 PowerShell 5.1 的 9 项合成密钥输入测试通过；不与 Java 数量混算。
 
@@ -55,20 +55,19 @@ Boot 3.5.16、Spring AI 1.1.2、Alibaba core BOM 1.1.2.0、DashScope/extensions 
 Milvus server 2.6.2、PostgreSQL 17.9、etcd 3.5.18、官方源码构建 MinIO RELEASE.2025-10-15T17-29-55Z。
 版本来源、源码镜像取舍与模型空间保护见 [decisions.md](decisions.md)。
 
-实际 Maven 可执行文件为 C:\apache-maven-3.9.16\bin\mvn.cmd；Java 位于 D:\JDK21。
-在项目 H:\Plan\knowflow 中执行：
+原实测使用 Java 21 与 Maven 3.9.16。以下命令统一使用 PATH 中的工具名，在项目根目录执行；本机目录已脱敏：
 
 ```powershell
 . ./scripts/Import-LocalEnvironment.ps1
 $env:KNOWFLOW_INFRA_TESTS='true'
 $env:KNOWFLOW_REAL_MODEL_TESTS='true'
-& 'C:\apache-maven-3.9.16\bin\mvn.cmd' -s .mvn/settings.xml -gs .mvn/settings.xml -B -ntp verify
+mvn -s .mvn/settings.xml -gs .mvn/settings.xml -B -ntp verify
 # 上述为完整回归的实际命令。以下为真实模型重启实测命令：
-.\scripts\Test-RealRestart.ps1 -MavenCommand 'C:\apache-maven-3.9.16\bin\mvn.cmd' -DockerCommand 'C:\Program Files\Docker\Docker\resources\bin\docker.exe'
+.\scripts\Test-RealRestart.ps1
 ```
 
 专门重启脚本在两个 Maven/JVM 进程之间执行 docker compose restart 和带健康等待的 compose up，不删除卷。
-后端当前已重新启动，仅监听 127.0.0.1:18080。健康检查的 CONFIGURED_NOT_PROBED 仍只代表配置存在；
+实测后端仅监听 127.0.0.1:18080。健康检查的 CONFIGURED_NOT_PROBED 仍只代表配置存在；
 本报告对模型已接通的判断依据是实际生成的回答／引用与 HTTP 验证，而不是健康字段。
 新加入的真实重启类只在 KNOWFLOW_REAL_RESTART_PHASE=seed/verify 时执行，普通回归会跳过；
 没有 Key 时真实模型类也应跳过或明确失败，不能将其视为通过。
@@ -94,7 +93,7 @@ $env:KNOWFLOW_REAL_MODEL_TESTS='true'
 | T15 | 所给样本通过 | 真实模型忽略注入且保留引用；不声称防御所有可能注入 |
 | T16 | 未开发／未测 | M2 完整前端和移动端 |
 | T17 | 未开发／未测 | M2 知识库删除与确认；文档删除已验证 |
-| T18 | 本地交付检查 | .env／data／target 被忽略；交付前检查源码暂存与 ZIP；无远程仓库 |
+| T18 | 本地与远程均已核实 | 公开仓库 Anne10086/knowflow 已建立并同步；原审查版本 11a63c8 与 ZIP 一致。当前证据路径已脱敏；旧历史仍有路径及作者信息 |
 
 ## 失败历史、限制与停止条件
 
@@ -107,4 +106,38 @@ MinIO 旧镜像不可获取，改为官方固定源码构建；未替换 Milvus 
 M1 采用同步 TXT 导入；异步任务队列、PDF/DOCX、完整知识库 CRUD 和界面待 M2。
 单用户、单后端进程、loopback 使用，无登录鉴权，不能据此公开部署。
 引用校验能证明片段确实存在，但不等于保证每个回答都无幻觉；只对本报告执行的用例负责。
-本轮完成 M1 验收材料，**停止，不继续 M2**。本地 commit 在最终回复中报告；未创建或推送远程仓库。
+本轮完成 M1 收尾，**停止，不继续 M2**。远程仓库 https://github.com/Anne10086/knowflow 已建立；收尾提交作为稳定基线，提交编号在最终交付中报告。
+## 独立验收结论与 M1 收尾
+
+用户转交的独立审查明确接受原版本 `11a63c8a6e6daa8081180e90b23eab15d9f48ec2`，允许 M1 进入验收完成状态。
+该审查核对了源码、ZIP/Git Blob 一致性与既有运行证据，没有在审查者环境重新运行 Maven、Docker 或供应商。
+本次收尾提交在此基础上修正以下小范围问题，其改动由下面本机回归验证，不冒称由独立审查者再次审计。
+
+| 收尾项 | 实际结果 |
+|---|---|
+| 无 Key 冷启动删除已索引文档 | 修复前真实 HTTP 503，修复后 204；真实 Milvus 向量、SQL 分块和私有原文件均删除 |
+| 模型依赖检查 | 删除前后 embeddingModel、dashScopeApi、milvusVectorStore 均未成为 Spring 单例，无供应商请求 |
+| 错误外层 Content-Type | 修复前 500，修复后问答及上传接口均返回 415、UNSUPPORTED_MEDIA_TYPE 和 requestId |
+| 当前公开证据脱敏 | 本机工程／用户路径改为 PROJECT_DIR／USER_HOME 标签，started-by 用户名改为 LOCAL_USER；结果行未改动 |
+| 远程状态与 T18 | 远程已建立、原验收提交已同步，旧的“无远程仓库”记录已修正 |
+
+`NoKeyDeletionIT` 的模型替身只在 Spring 外用于预置一个真实 Milvus 索引，模拟“已有索引但 Key 被移除”。
+待测删除使用生产 HTTP／删除服务与真实数据库，不覆盖生产模型 Bean；断言删除不会实例化任何 AI Bean。
+
+修复前专项命令：
+
+```powershell
+mvn -s .mvn/settings.xml -gs .mvn/settings.xml -B -ntp '-Dit.test=NoKeyDeletionIT,NoModelHttpIT#actualWrongOuterContentTypeIs415' test-compile failsafe:integration-test failsafe:verify
+```
+
+- [修复前](evidence/closeout-before.txt)：2 项执行、2 失败。
+- [修复后专项](evidence/closeout-fixed.txt)：2 项执行、2 通过。
+- [收尾完整回归](evidence/closeout-full.txt)：**43 项通过，0 失败、0 错误；2 项专门重启用例跳过**。
+  包含 24 项单元／MockMvc、11 项基础设施、1 项无 Key 删除、6 项缺 Key 真实 HTTP、1 项真实供应商完整 RAG 用例。
+  两个重启场景仍使用此前单独执行的成功记录；本轮没有重复重启测试，不将跳过记作通过。
+
+归档时只替换本机路径、用户名及凭据，统一换行／行末空白；保留时间、测试数量、成功失败和请求／来源 ID。
+新增 Export-PublicEvidence.ps1 可复用同一脱敏方法。当前树的证据已脱敏，**历史提交仍可读取原路径和作者姓名／邮箱**。
+本机配置尚非 GitHub noreply 邮箱；本次保留原作者配置，不自动更改身份或重写公开历史。
+模型长时间超时／恢复测试、更多注入样本和图形截图仍为已知后续事项，M2 继续冻结。
+收尾后已重新启动独立打包 JAR：健康接口 HTTP 200，实际错误 Content-Type 请求返回 415。证据见 [打包后 HTTP 415](evidence/closeout-live-415.json)。

@@ -1,10 +1,10 @@
 {
   "httpStatus": 200,
   "body": {
+    "requestId": "cec6857b-58e3-4eee-9521-b7ed691e18cc",
     "model": "CONFIGURED_NOT_PROBED",
-    "requestId": "04ed5162-ad27-4358-8d01-0e088387342f",
-    "milvus": "UP",
+    "status": "READY",
     "database": "UP",
-    "status": "READY"
+    "milvus": "UP"
   }
 }

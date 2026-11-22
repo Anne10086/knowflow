@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: dev.knowflow.RealModelAcceptanceIT
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 15.18 s -- in dev.knowflow.RealModelAcceptanceIT
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.929 s -- in dev.knowflow.RealModelAcceptanceIT

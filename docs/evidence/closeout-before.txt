@@ -1,0 +1,154 @@
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------------< dev.knowflow:knowflow >------------------------
+[INFO] Building KnowFlow 0.1.0-M1
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ knowflow ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ knowflow ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ knowflow ---
+[INFO] skip non existing resourceDirectory <PROJECT_DIR>\src\test\resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ knowflow ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 10 source files with javac [debug parameters release 21] to target\test-classes
+[INFO]
+[INFO] --- failsafe:3.5.6:integration-test (default-cli) @ knowflow ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running dev.knowflow.NoKeyDeletionIT
+16:00:26.336 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [dev.knowflow.NoKeyDeletionIT]: NoKeyDeletionIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+16:00:26.547 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration dev.knowflow.KnowFlowApplication for test class dev.knowflow.NoKeyDeletionIT
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-22T16:00:27.092+08:00  INFO 23868 --- [knowflow] [           main] dev.knowflow.NoKeyDeletionIT             : Starting NoKeyDeletionIT using Java 21.0.10 with PID 23868 (started by <LOCAL_USER> in <PROJECT_DIR>)
+2026-11-22T16:00:27.093+08:00  INFO 23868 --- [knowflow] [           main] dev.knowflow.NoKeyDeletionIT             : No active profile set, falling back to 1 default profile: "default"
+2026-11-22T16:00:28.832+08:00  INFO 23868 --- [knowflow] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2026-11-22T16:00:28.847+08:00  INFO 23868 --- [knowflow] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-22T16:00:28.847+08:00  INFO 23868 --- [knowflow] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-11-22T16:00:28.936+08:00  INFO 23868 --- [knowflow] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-11-22T16:00:28.937+08:00  INFO 23868 --- [knowflow] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1822 ms
+2026-11-22T16:00:29.549+08:00  INFO 23868 --- [knowflow] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-11-22T16:00:29.710+08:00  INFO 23868 --- [knowflow] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1fc5c0b2
+2026-11-22T16:00:29.712+08:00  INFO 23868 --- [knowflow] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-11-22T16:00:29.744+08:00  INFO 23868 --- [knowflow] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:15432/knowflow (PostgreSQL 17.9)
+2026-11-22T16:00:29.814+08:00  INFO 23868 --- [knowflow] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.035s)
+2026-11-22T16:00:29.850+08:00  INFO 23868 --- [knowflow] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-11-22T16:00:29.855+08:00  INFO 23868 --- [knowflow] [           main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-11-22T16:00:30.572+08:00  INFO 23868 --- [knowflow] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-11-22T16:00:30.764+08:00  INFO 23868 --- [knowflow] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 60174 (http) with context path '/'
+2026-11-22T16:00:30.783+08:00  INFO 23868 --- [knowflow] [           main] dev.knowflow.NoKeyDeletionIT             : Started NoKeyDeletionIT in 4.035 seconds (process running for 5.221)
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (<USER_HOME>\.m2\repository\net\bytebuddy\byte-buddy-agent\1.17.8\byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+Java HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+2026-11-22T16:00:33.358+08:00  INFO 23868 --- [knowflow] [1-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-22T16:00:33.358+08:00  INFO 23868 --- [knowflow] [1-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-22T16:00:33.359+08:00  INFO 23868 --- [knowflow] [1-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 7.414 s <<< FAILURE! -- in dev.knowflow.NoKeyDeletionIT
+[ERROR] dev.knowflow.NoKeyDeletionIT.coldStartWithoutKeyDeletesExistingDocumentAndRealVectors -- Time elapsed: 2.091 s <<< FAILURE!
+org.opentest4j.AssertionFailedError:
+
+expected: 204
+ but was: 503
+	at dev.knowflow.NoKeyDeletionIT.coldStartWithoutKeyDeletesExistingDocumentAndRealVectors(NoKeyDeletionIT.java:58)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[INFO] Running dev.knowflow.NoModelHttpIT
+2026-11-22T16:00:33.606+08:00  INFO 23868 --- [knowflow] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [dev.knowflow.NoModelHttpIT]: NoModelHttpIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-22T16:00:33.609+08:00  INFO 23868 --- [knowflow] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration dev.knowflow.KnowFlowApplication for test class dev.knowflow.NoModelHttpIT
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-22T16:00:33.643+08:00  INFO 23868 --- [knowflow] [           main] dev.knowflow.NoModelHttpIT               : Starting NoModelHttpIT using Java 21.0.10 with PID 23868 (started by <LOCAL_USER> in <PROJECT_DIR>)
+2026-11-22T16:00:33.644+08:00  INFO 23868 --- [knowflow] [           main] dev.knowflow.NoModelHttpIT               : No active profile set, falling back to 1 default profile: "default"
+2026-11-22T16:00:34.023+08:00  INFO 23868 --- [knowflow] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2026-11-22T16:00:34.025+08:00  INFO 23868 --- [knowflow] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-22T16:00:34.025+08:00  INFO 23868 --- [knowflow] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-11-22T16:00:34.067+08:00  INFO 23868 --- [knowflow] [           main] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2026-11-22T16:00:34.067+08:00  INFO 23868 --- [knowflow] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 420 ms
+2026-11-22T16:00:34.147+08:00  INFO 23868 --- [knowflow] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-11-22T16:00:34.161+08:00  INFO 23868 --- [knowflow] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@43c0e088
+2026-11-22T16:00:34.162+08:00  INFO 23868 --- [knowflow] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-11-22T16:00:34.165+08:00  INFO 23868 --- [knowflow] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:15432/knowflow (PostgreSQL 17.9)
+2026-11-22T16:00:34.193+08:00  INFO 23868 --- [knowflow] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.010s)
+2026-11-22T16:00:34.223+08:00  INFO 23868 --- [knowflow] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-11-22T16:00:34.225+08:00  INFO 23868 --- [knowflow] [           main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-11-22T16:00:34.391+08:00  INFO 23868 --- [knowflow] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-11-22T16:00:34.418+08:00  INFO 23868 --- [knowflow] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 60191 (http) with context path '/'
+2026-11-22T16:00:34.425+08:00  INFO 23868 --- [knowflow] [           main] dev.knowflow.NoModelHttpIT               : Started NoModelHttpIT in 0.813 seconds (process running for 8.863)
+2026-11-22T16:00:34.463+08:00  INFO 23868 --- [knowflow] [1-auto-2-exec-1] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-22T16:00:34.464+08:00  INFO 23868 --- [knowflow] [1-auto-2-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-22T16:00:34.465+08:00  INFO 23868 --- [knowflow] [1-auto-2-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-11-22T16:00:34.470+08:00 ERROR 23868 --- [knowflow] [1-auto-2-exec-1] dev.knowflow.api.ApiErrors               : Request failed: HttpMediaTypeNotSupportedException
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.885 s <<< FAILURE! -- in dev.knowflow.NoModelHttpIT
+[ERROR] dev.knowflow.NoModelHttpIT.actualWrongOuterContentTypeIs415 -- Time elapsed: 0.054 s <<< FAILURE!
+org.opentest4j.AssertionFailedError:
+
+expected: 415
+ but was: 500
+	at dev.knowflow.NoModelHttpIT.actualWrongOuterContentTypeIs415(NoModelHttpIT.java:56)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[INFO]
+[INFO] Results:
+[INFO]
+[ERROR] Failures:
+[ERROR]   NoKeyDeletionIT.coldStartWithoutKeyDeletesExistingDocumentAndRealVectors:58
+expected: 204
+ but was: 503
+[ERROR]   NoModelHttpIT.actualWrongOuterContentTypeIs415:56
+expected: 415
+ but was: 500
+[INFO]
+[ERROR] Tests run: 2, Failures: 2, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- failsafe:3.5.6:verify (default-cli) @ knowflow ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  14.592 s
+[INFO] Finished at: 2026-11-22T16:00:35+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-failsafe-plugin:3.5.6:verify (default-cli) on project knowflow: There are test failures.
+[ERROR]
+[ERROR] See <PROJECT_DIR>\target\failsafe-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

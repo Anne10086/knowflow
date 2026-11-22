@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: dev.knowflow.InfrastructureIT
 -------------------------------------------------------------------------------
-Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.949 s -- in dev.knowflow.InfrastructureIT
+Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.700 s -- in dev.knowflow.InfrastructureIT

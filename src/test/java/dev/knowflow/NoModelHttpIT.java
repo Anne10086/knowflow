@@ -50,6 +50,18 @@ class NoModelHttpIT {
         assertThat(result.getBody().path("insufficientEvidence").asBoolean()).isTrue();
         assertThat(result.getBody().path("sources").isEmpty()).isTrue();
     }
+    @Test void actualWrongOuterContentTypeIs415() {
+        var headers=new HttpHeaders(); headers.setContentType(MediaType.TEXT_PLAIN);
+        var question=http.postForEntity("/api/knowledge-bases/"+kb+"/ask",new HttpEntity<>("question",headers),JsonNode.class);
+        assertThat(question.getStatusCode().value()).isEqualTo(415);
+        assertThat(question.getBody().path("code").asText()).isEqualTo("UNSUPPORTED_MEDIA_TYPE");
+        assertThat(question.getBody().path("requestId").asText()).isNotBlank();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        var upload=http.postForEntity("/api/knowledge-bases/"+kb+"/documents",new HttpEntity<>("{}",headers),JsonNode.class);
+        assertThat(upload.getStatusCode().value()).isEqualTo(415);
+        assertThat(upload.getBody().path("code").asText()).isEqualTo("UNSUPPORTED_MEDIA_TYPE");
+        assertThat(store.files(kb)).isEmpty();
+    }
     @Test void actualOversizedMultipartIs413WithoutCreatingDocument() {
         var resource=new ByteArrayResource(new byte[2*1024*1024+1]) {@Override public String getFilename(){return "large.txt";}};
         var parts=new LinkedMultiValueMap<String,Object>(); parts.add("file",resource);

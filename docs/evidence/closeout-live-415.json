@@ -1,0 +1,8 @@
+{
+  "httpStatus": 415,
+  "body": {
+    "code": "UNSUPPORTED_MEDIA_TYPE",
+    "message": "请求 Content-Type 不受支持；问答使用 application/json，文件上传使用 multipart/form-data",
+    "requestId": "e0b6f284-c3a9-4fa4-822c-4fdb6bb96c0c"
+  }
+}

@@ -28,6 +28,10 @@ from PostgreSQL. TXT has no reliable page number, so `pageNumber` is null. Offse
 in normalized text (BOM removed, CR/CRLF converted to LF), not byte positions in the original file.
 
 Deletion commits DELETING first, immediately excluding the document from answer sources.
+Vector deletion calls the Milvus Java SDK directly by the journaled UUIDs and the Spring AI `doc_id` field.
+It does not initialize the embedding model, provider API or Spring AI vector store. Missing model credentials
+therefore do not prevent deletion; an unavailable Milvus still retains DELETING for retry. A missing collection
+is an idempotent no-op, including before the first import creates its collection.
 It then deletes saved vector IDs, private original and document/chunk rows. Failure retains the tombstone
 and journal for retry. Partially indexed FAILED documents may retain vectors, but cannot enter generation;
 reindex deletes the journaled IDs before inserting again. On startup INDEXING becomes FAILED/INTERRUPTED.

@@ -1,7 +1,7 @@
 # KnowFlow · M1 Java RAG backend
 
 A local knowledge base with PostgreSQL metadata, private TXT originals, Milvus retrieval and DashScope generation.
-**M1 core flow passed real-model and dependency-restart tests on 2026-11-22; ready for human review.** Read [actual test results](docs/test-report.md) before evaluating claims.
+**M1 passed independent static source review and evidence review on 2026-11-22.** The closeout regression passes 43 tests, including real model calls; see [actual test results](docs/test-report.md). M2 remains frozen.
 No complete website is included: React, PDF/DOCX and mobile UI are M2 work.
 
 ## Requirements (Windows / WSL2)
@@ -99,7 +99,7 @@ pwsh -File scripts/Test-Restart.ps1
 # Two separate Java processes with real dependency restart; synthetic embedding, no model calls.
 ```
 
-Use `-MavenCommand 'C:\apache-maven-3.9.16\bin\mvn.cmd'` if Maven is not on PATH.
+Use `-MavenCommand '<MAVEN_HOME>\bin\mvn.cmd'` if Maven is not on PATH, replacing the placeholder with your installation directory.
 Test reports: `target/surefire-reports` and `target/failsafe-reports`.
 `InfrastructureIT` never claims model correctness. `RealModelAcceptanceIT` tests actual TXT → DashScope embedding →
 Milvus → generation → verified citations, unknown budget, cross-library refusal, injection text and deletion.
@@ -121,4 +121,10 @@ Real-model acceptance, durable asynchronous ingestion, broader failure/restart t
 
 旧控制台无法粘贴时，可在项目目录运行 `.\scripts\Set-ModelKey.ps1 -Window`，在本机遮挡窗口中点击粘贴和保存。窗口不预填现有密钥，保存成功仅代表配置写入；仍需真实模型验证。
 
-Actual verified model setup: qwen-plus + text-embedding-v3 (1024 dimensions); DeepSeek has not been configured. Real model restart reproduction: `.\scripts\Test-RealRestart.ps1 -MavenCommand 'C:\apache-maven-3.9.16\bin\mvn.cmd'`. This restarts only the KnowFlow Compose services and preserves volumes.
+Actual verified model setup: qwen-plus + text-embedding-v3 (1024 dimensions); DeepSeek has not been configured. Real model restart reproduction: `.\scripts\Test-RealRestart.ps1` (Maven and Docker on PATH). This restarts only the KnowFlow Compose services and preserves volumes.
+
+Document deletion works after a cold start without a model key: it talks directly to Milvus without creating AI beans.
+Unsupported outer request Content-Type returns HTTP 415 with a structured error and request ID.
+Before publishing logs, run `./scripts/Export-PublicEvidence.ps1 -Source <local-log> -Destination <public-evidence>`.
+It replaces workstation paths/usernames and masks known process credentials; review the output before publication.
+Current evidence is sanitized. Earlier Git commits still retain original paths and author metadata; no history rewrite was performed.

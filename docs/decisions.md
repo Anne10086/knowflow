@@ -57,3 +57,11 @@ Current user instructions explicitly request a local Git commit, superseding the
 No remote repository creation or publication is required to validate this milestone; a source ZIP can be supplied.
 
 Runtime acceptance update (2026-11-22): actual text-embedding-v3 1024-dimensional indexing, qwen-plus generation and citations passed. Real-model vectors and answers also survived PostgreSQL/Milvus/etcd/MinIO and Java-process restart. See the test report and JSON evidence; no DeepSeek request was made.
+
+M1 closeout: independent review accepted commit `11a63c8`. Two additional real HTTP/infrastructure scenarios
+reproduced 503 for cold-start deletion without a key and 500 for unsupported outer Content-Type, then passed
+after fixes. Deletion now calls Milvus SDK `hasCollection`/`delete` directly with the persisted UUIDs and
+Spring AI's `doc_id` field; neither provider configuration nor embedding observation hooks are involved.
+Unavailable Milvus remains an error/tombstone, while a collection that does not exist needs no vector cleanup.
+HTTP media-type failures map to 415. No dependencies, database schema or product scope were added.
+Current evidence paths are sanitized with a reusable exporter; old commits and author metadata remain intact.
