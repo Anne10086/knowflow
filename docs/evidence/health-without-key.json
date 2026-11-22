@@ -1,7 +1,7 @@
 {
-  "database" : "UP",
-  "milvus" : "UP",
-  "requestId" : "e21b3afd-4698-4d3b-b34c-01560af3de23",
   "model" : "NOT_CONFIGURED",
+  "requestId" : "97529903-7e63-4fc9-ab08-f5ae4cf00e90",
+  "milvus" : "UP",
+  "database" : "UP",
   "status" : "DEGRADED"
 }

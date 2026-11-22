@@ -1,0 +1,8 @@
+{
+  "providerCode": "InvalidApiKey",
+  "httpStatus": 401,
+  "embeddingReturned": false,
+  "message": "Invalid API-key provided.",
+  "requestId": "02a0352a-d36f-9b66-b42b-de35b188ceeb",
+  "endpoint": "https://dashscope.aliyuncs.com/api/v1/services/embeddings/text-embedding/text-embedding"
+}

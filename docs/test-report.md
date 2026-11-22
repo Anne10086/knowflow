@@ -13,6 +13,15 @@ SDK 在失败时会输出 embedding 原文；已禁用供应商原始日志，�
 构建曾因运行中的后端锁住 Windows JAR 而失败；核实 18080 进程属于 KnowFlow 后停止，重新打包成功。
 当前独立后端已停止，待用户完成重新配置后启动和复测。下面保留首次无密钥阶段的历史报告。
 
+## 再次配置后的复测（2026-11-22 14:45）
+
+本次完整回归真实执行：40 项通过、1 项真实模型用例报错、1 项专用重启用例跳过。不能标为全部通过。
+真实模型依然在首次 embedding 返回 MODEL_AUTH_FAILED（HTTP 401），未进入问题生成。
+为排除 Java SDK 影响，直接向同一北京区原生 embedding 接口发送一次最小请求，得到 HTTP 401 / InvalidApiKey / Invalid API-key provided.，没有 embedding 输出。
+证据：evidence/real-model-reconfigured.txt、evidence/direct-provider-auth.json。
+当前结论是这把密钥不被该接口接受；尚不能确定是地区、套餐、平台来源还是密钥本身问题。等待用户提供平台／地区／套餐信息，不要求其发送密钥，不切换服务商或发送密钥到未知接口。
+项目仍为 M1 待验收，独立后端暂未启动，未进入 M2。以下各节为此前历史记录。
+
 日期：2026-11-22。范围：M1 Java 后端；不含完整前端、不含多 Agent、不修改 SiteDori。
 
 **结论：M1 后端候选版本已实现并完成下述验证，但 M1 尚未验收通过。**
