@@ -1,0 +1,46 @@
+server:
+  address: ${SERVER_ADDRESS:127.0.0.1}
+  port: ${SERVER_PORT:18080}
+  error:
+    include-message: never
+    include-stacktrace: never
+spring:
+  application:
+    name: knowflow
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://127.0.0.1:15432/knowflow}
+    username: ${POSTGRES_USER:knowflow}
+    password: ${POSTGRES_PASSWORD}
+    hikari:
+      maximum-pool-size: 8
+      connection-timeout: 5000
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 3MB
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+knowflow:
+  upload-dir: ${UPLOAD_DIR:./data/uploads}
+  ai:
+    api-key: ${DASHSCOPE_API_KEY:}
+    base-url: ${DASHSCOPE_BASE_URL:https://dashscope.aliyuncs.com}
+    chat-model: ${CHAT_MODEL:qwen-plus}
+    embedding-model: ${EMBEDDING_MODEL:text-embedding-v3}
+    embedding-dimensions: 1024
+  milvus:
+    host: ${MILVUS_HOST:127.0.0.1}
+    port: ${MILVUS_PORT:19530}
+    collection: ${MILVUS_COLLECTION:knowflow_m1_v1}
+  retrieval:
+    top-k: 5
+    minimum-score: 0.65
