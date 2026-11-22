@@ -1,0 +1,10 @@
+PASS: ordinary key
+PASS: long key and bearer punctuation
+PASS: outer whitespace and quotes
+PASS: masked value rejected
+PASS: embedded newline rejected
+PASS: variable assignment rejected
+PASS: short value rejected
+PASS: missing setting appended
+PASS: duplicate setting consolidated
+Tests passed: 9; PowerShell 5.1.26100.9818. Only synthetic values in a temporary directory; real .env untouched.
