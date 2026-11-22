@@ -55,3 +55,5 @@ Synchronous import is an explicit M1 simplification; a durable asynchronous inge
 
 Current user instructions explicitly request a local Git commit, superseding the older no-local-repository line in AGENTS.md.
 No remote repository creation or publication is required to validate this milestone; a source ZIP can be supplied.
+
+Runtime acceptance update (2026-11-22): actual text-embedding-v3 1024-dimensional indexing, qwen-plus generation and citations passed. Real-model vectors and answers also survived PostgreSQL/Milvus/etcd/MinIO and Java-process restart. See the test report and JSON evidence; no DeepSeek request was made.

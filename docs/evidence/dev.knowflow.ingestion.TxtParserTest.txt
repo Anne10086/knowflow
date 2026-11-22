@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: dev.knowflow.ingestion.TxtParserTest
 -------------------------------------------------------------------------------
-Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.205 s -- in dev.knowflow.ingestion.TxtParserTest
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.108 s -- in dev.knowflow.ingestion.TxtParserTest

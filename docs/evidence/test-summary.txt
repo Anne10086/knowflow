@@ -1,7 +1,9 @@
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.281 s -- in dev.knowflow.api.KnowledgeApiTest
-Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.205 s -- in dev.knowflow.ingestion.TxtParserTest
-Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.223 s -- in dev.knowflow.rag.RagServiceTest
-Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.688 s -- in dev.knowflow.InfrastructureIT
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.725 s -- in dev.knowflow.NoModelHttpIT
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0 s -- in dev.knowflow.RealModelAcceptanceIT
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0 s -- in dev.knowflow.RestartPersistenceIT
+Full real-model Maven regression: 41 passed, 0 failures, 0 errors, 1 dedicated restart test skipped.
+KnowledgeApiTest: 5 passed. ModelFailuresTest: 2 passed. TxtParserTest: 9 passed. RagServiceTest: 8 passed.
+InfrastructureIT: 11 passed (real PostgreSQL/Milvus, test-only model substitutes).
+NoModelHttpIT: 5 passed (real HTTP, intentionally absent key).
+RealModelAcceptanceIT: 1 passed (genuine provider embeddings and generation).
+RealRestartPersistenceIT: separate seed and verify Maven/JVM runs, 1 passed in each, actual Docker dependency restart in between.
+PowerShell 5.1 input-script tests: 9 passed separately.
+Real HTTP standalone-jar smoke test: upload READY, BW-4827 plus source, unknown budget refusal, delete then refusal.
+See m1-verify-output.txt and real-restart-output.txt for exact command outputs; per-class reports may come from their separately identified runs.

@@ -1,0 +1,51 @@
+{
+  "upload": {
+    "chunkCount": 1,
+    "document": {
+      "id": "0e2443d1-5917-4161-8641-ce529df8bae3",
+      "kbId": "5e62b8e2-8ba5-41ed-8ac7-d12e19fe24a5",
+      "filename": "bluewhale.txt",
+      "sha256": "67097dd8e5248ecb18719618e4b5ce247bb87e58e6a4b831d6a4d0582e80a624",
+      "status": "READY",
+      "errorCode": null,
+      "createdAt": "2026-11-22T07:24:13.699855Z"
+    },
+    "requestId": "9edef383-7339-4859-9030-84d493dc025e"
+  },
+  "version": {
+    "sources": [
+      {
+        "documentId": "0e2443d1-5917-4161-8641-ce529df8bae3",
+        "filename": "bluewhale.txt",
+        "chunkId": "dbbfafd0-8e79-4ea3-9fde-7ba395bef05b",
+        "pageNumber": null,
+        "chunkIndex": 0,
+        "excerpt": "版本代号：BW-4827",
+        "startChar": 30,
+        "endChar": 42
+      }
+    ],
+    "grounded": true,
+    "answer": "BW-4827",
+    "requestId": "a5034282-43d7-4d88-a422-8c2b94288f9b",
+    "elapsedMs": 2596,
+    "insufficientEvidence": false
+  },
+  "unknownBudget": {
+    "sources": [],
+    "grounded": false,
+    "answer": "当前知识库没有足够依据回答这个问题。",
+    "requestId": "6f9ca117-f376-485a-9cf5-1e141e689ac3",
+    "elapsedMs": 789,
+    "insufficientEvidence": true
+  },
+  "afterDelete": {
+    "sources": [],
+    "grounded": false,
+    "answer": "当前知识库没有足够依据回答这个问题。",
+    "requestId": "5532e101-3181-4a89-9778-5f9fbccc0fe4",
+    "elapsedMs": 3,
+    "insufficientEvidence": true
+  },
+  "completed": true
+}

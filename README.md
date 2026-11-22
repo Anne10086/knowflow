@@ -1,7 +1,7 @@
 # KnowFlow · M1 Java RAG backend
 
 A local knowledge base with PostgreSQL metadata, private TXT originals, Milvus retrieval and DashScope generation.
-**M1 acceptance is pending until real model tests pass.** Read [actual test results](docs/test-report.md) before evaluating claims.
+**M1 core flow passed real-model and dependency-restart tests on 2026-11-22; ready for human review.** Read [actual test results](docs/test-report.md) before evaluating claims.
 No complete website is included: React, PDF/DOCX and mobile UI are M2 work.
 
 ## Requirements (Windows / WSL2)
@@ -120,3 +120,5 @@ Citation verification proves quoted text exists in retrieved sources; it cannot 
 Real-model acceptance, durable asynchronous ingestion, broader failure/restart testing and user-facing UI remain separately tracked work.
 
 旧控制台无法粘贴时，可在项目目录运行 `.\scripts\Set-ModelKey.ps1 -Window`，在本机遮挡窗口中点击粘贴和保存。窗口不预填现有密钥，保存成功仅代表配置写入；仍需真实模型验证。
+
+Actual verified model setup: qwen-plus + text-embedding-v3 (1024 dimensions); DeepSeek has not been configured. Real model restart reproduction: `.\scripts\Test-RealRestart.ps1 -MavenCommand 'C:\apache-maven-3.9.16\bin\mvn.cmd'`. This restarts only the KnowFlow Compose services and preserves volumes.

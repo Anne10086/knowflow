@@ -1,0 +1,16 @@
+{
+  "answer" : "BW-4827",
+  "sources" : [ {
+    "documentId" : "e752c4b3-3d4c-450e-b88a-a7ce1aece625",
+    "filename" : "bluewhale.txt",
+    "chunkId" : "0306b924-85fb-47d3-8b14-e3f250fe7745",
+    "pageNumber" : null,
+    "chunkIndex" : 0,
+    "excerpt" : "版本代号：BW-4827",
+    "startChar" : 30,
+    "endChar" : 42
+  } ],
+  "grounded" : true,
+  "insufficientEvidence" : false,
+  "elapsedMs" : 5462
+}

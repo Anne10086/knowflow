@@ -1,10 +1,10 @@
 {
-  "httpStatus": 503,
+  "httpStatus": 200,
   "body": {
-    "database": "UP",
+    "model": "CONFIGURED_NOT_PROBED",
+    "requestId": "04ed5162-ad27-4358-8d01-0e088387342f",
     "milvus": "UP",
-    "requestId": "15ea00b1-3c5a-4eea-a399-6452211f2387",
-    "model": "NOT_CONFIGURED",
-    "status": "DEGRADED"
+    "database": "UP",
+    "status": "READY"
   }
 }
