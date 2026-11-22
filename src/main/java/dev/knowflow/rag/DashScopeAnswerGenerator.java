@@ -2,6 +2,7 @@ package dev.knowflow.rag;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.knowflow.api.ApiException;
+import dev.knowflow.api.ModelFailures;
 import org.springframework.ai.chat.messages.*;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.prompt.Prompt;
@@ -34,7 +35,7 @@ public class DashScopeAnswerGenerator implements AnswerGenerator {
             if (raw == null || raw.length() > 32_000) throw new IllegalStateException("Invalid response");
             return json.readValue(raw, Draft.class);
         } catch (Exception ex) {
-            throw ApiException.unavailable("MODEL_FAILED", "模型调用失败或返回格式无效，请检查模型配置、网络和额度后重试");
+            throw ModelFailures.safe(ex,"MODEL_FAILED", "模型调用失败或返回格式无效，请检查模型配置、网络和额度后重试");
         }
     }
 }

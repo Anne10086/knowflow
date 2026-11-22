@@ -1,0 +1,5 @@
+Actual endpoint: https://dashscope.aliyuncs.com
+Initial real-model attempt: embedding HTTP 401; cleanup foreign-key error masked original exception.
+Focused recheck command: mvn -s .mvn/settings.xml -gs .mvn/settings.xml -B -ntp -Dit.test=RealModelAcceptanceIT verify
+Focused recheck: 1 real-model test executed, 1 error, 0 skipped; upstream NonTransientAiException: 401.
+No generated answer or real-model acceptance pass. User is reconfiguring credentials.

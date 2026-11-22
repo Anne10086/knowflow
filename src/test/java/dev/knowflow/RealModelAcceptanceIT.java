@@ -47,8 +47,13 @@ class RealModelAcceptanceIT {
             assertThat(rag.ask(a,"蓝鲸测试计划的版本代号是什么？").insufficientEvidence()).isTrue();
         } finally {
             // Preserve failures in Surefire output while removing only this test's own uploaded documents.
-            for(UUID id:uploaded) ingestion.delete(store.kbForDocument(id),id);
-            for(UUID id:List.of(a,b,empty)) jdbc.sql("DELETE FROM knowledge_bases WHERE id=:id").param("id",id).update();
+            for(UUID base:List.of(a,b,empty)) {
+                for(var document:store.files(base)) {
+                    try { ingestion.delete(base,document.id()); }
+                    catch(RuntimeException cleanupError) { System.err.println("REAL_MODEL_CLEANUP_PENDING: "+document.id()); }
+                }
+                if(store.files(base).isEmpty()) jdbc.sql("DELETE FROM knowledge_bases WHERE id=:id").param("id",base).update();
+            }
         }
     }
 }

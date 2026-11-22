@@ -1,3 +1,7 @@
+logging:
+  level:
+    # Upstream logs complete embedding input on provider errors. Keep document text private.
+    com.alibaba.cloud.ai.dashscope: "OFF"
 server:
   address: ${SERVER_ADDRESS:127.0.0.1}
   port: ${SERVER_PORT:18080}

@@ -1,6 +1,7 @@
 package dev.knowflow.ingestion;
 
 import dev.knowflow.api.ApiException;
+import dev.knowflow.api.ModelFailures;
 import dev.knowflow.knowledge.KnowledgeStore;
 import dev.knowflow.knowledge.KnowledgeStore.*;
 import dev.knowflow.retrieval.VectorIndex;
@@ -63,7 +64,7 @@ public class IngestionService {
         } catch (RuntimeException ex) {
             tx.executeWithoutResult(s -> store.failProcessing(kb, file));
             // The persisted file ID is obtained from GET /files; provider errors never become answers.
-            throw ApiException.unavailable("INDEX_FAILED", "索引失败，原始文件和分块已保存，可在文件列表查看并重试索引");
+            throw ModelFailures.safe(ex,"INDEX_FAILED", "索引失败，原始文件和分块已保存，可在文件列表查看并重试索引");
         }
     }
     public void delete(UUID kb, UUID file) {

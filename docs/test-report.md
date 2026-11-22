@@ -1,5 +1,18 @@
 # KnowFlow M1 实测报告
 
+## 配置密钥后的复测（2026-11-22 14:43）
+
+本地已检测到密钥，程序读取值与本地配置一致。两次真实模型尝试均在 embedding 阶段返回 HTTP 401，未进入问答，M1 仍未通过。
+当前配置为北京区 https://dashscope.aliyuncs.com，用户正在重新配置密钥。401 也可能来自地区或套餐与接口不匹配，尚未确认具体原因。
+官方说明：https://www.alibabacloud.com/help/en/model-studio/error-code
+
+首次真实用例的 finally 清理遇到外键错误，掩盖了原始 embedding 401；已改为清理本次各库所有文档（含失败上传），保留原始异常。
+SDK 在失败时会输出 embedding 原文；已禁用供应商原始日志，并新增 MODEL_AUTH_FAILED / MODEL_ACCESS_DENIED 的安全提示和两项测试。
+修复后不调用真实模型的回归：40 通过、0 失败、2 跳过（真实模型及专门重启用例），不改变此前真实模型失败的结论。
+真实模型复测记录见 evidence/auth-recheck.txt；修复回归输出见 evidence/auth-fix-verify.txt。
+构建曾因运行中的后端锁住 Windows JAR 而失败；核实 18080 进程属于 KnowFlow 后停止，重新打包成功。
+当前独立后端已停止，待用户完成重新配置后启动和复测。下面保留首次无密钥阶段的历史报告。
+
 日期：2026-11-22。范围：M1 Java 后端；不含完整前端、不含多 Agent、不修改 SiteDori。
 
 **结论：M1 后端候选版本已实现并完成下述验证，但 M1 尚未验收通过。**
